@@ -5,6 +5,13 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# testing suite Rspec
+group :development, :test do
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'autotest'
+  gem 'autotest-standalone'
+end
 # authlogic
 gem 'authlogic'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
