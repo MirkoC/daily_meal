@@ -11,6 +11,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'autotest'
   gem 'autotest-standalone'
+  gem 'factory_girl_rails'
+  gem 'faker'
 end
 # api auth
 gem 'jwt'
