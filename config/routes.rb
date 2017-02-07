@@ -4,4 +4,6 @@ Rails.application.routes.draw do
     registrations: 'user/registrations',
     passwords: 'user/passwords'
   }
+
+  resources :restaurants, only: [:index, :show]
 end
