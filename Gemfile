@@ -12,7 +12,7 @@ group :development, :test do
   gem 'autotest'
   gem 'autotest-standalone'
   gem 'factory_girl_rails'
-  gem 'faker'
+  gem 'faker', git: 'git://github.com/stympy/faker.git', branch: 'master'
 end
 # api auth
 gem 'jwt'
