@@ -12,6 +12,8 @@ group :development, :test do
   gem 'autotest'
   gem 'autotest-standalone'
 end
+# api auth
+gem 'jwt'
 # devise
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
