@@ -4,7 +4,7 @@ class RestaurantsController < ApplicationController
   before_action :authenticate_request!
 
   def index
-    @restaurants = load_collection
+    @restaurants = paginate load_collection, per_page: per_page
   end
 
   def show
