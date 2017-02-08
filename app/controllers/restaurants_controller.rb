@@ -43,7 +43,7 @@ class RestaurantsController < ApplicationController
   def geo_search(lat, lng, collection)
     if lat && lng
       collection = collection.where("latitude >= ? - 0.05 AND latitude <= ? + 0.05 AND "\
-                       "longitude >= ? - 0.05 AND longitude <= ? + 0.05", lat, lat, lng, lng)
+                                    "longitude >= ? - 0.05 AND longitude <= ? + 0.05", lat, lat, lng, lng)
     elsif lat
       collection = collection.where("latitude >= ? - 0.05 AND latitude <= ? + 0.05", lat, lat)
     elsif lng
