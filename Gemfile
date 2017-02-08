@@ -7,14 +7,16 @@ end
 
 gem 'foreman'
 
+# factories
+gem 'factory_girl_rails'
+gem 'faker', git: 'git://github.com/stympy/faker.git', branch: 'master'
+
 # testing suite Rspec
 group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'autotest'
   gem 'autotest-standalone'
-  gem 'factory_girl_rails'
-  gem 'faker', git: 'git://github.com/stympy/faker.git', branch: 'master'
 end
 # api auth
 gem 'jwt'
