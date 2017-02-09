@@ -5,13 +5,8 @@ RSpec.describe RestaurantsController do
   include_context 'api_helper'
   include_context 'seed_data'
 
-  let(:user) { create(:user) }
-  let(:headers) { { 'Content-Type' => 'application/json',
-                    'Accept' => 'application/json',
-                    'Authorization' => "Bearer #{user.new_jwt}" } }
-
   describe :index do
-    it 'gets all of the restaurants' do
+    it 'gets all of the restaurants (5 per page)' do
       get '/restaurants', headers: headers, as: :json
       expect(response).to be_success
       body = JSON.parse response.body

@@ -24,7 +24,7 @@ class MealsController < ApplicationController
 
   def load_collection
     start = chain_start.all
-    start = start.where(name: params[:meal_name]) if params[:meal_name]
+    start = start.where('meals.name ILIKE ?', "%#{params[:meal_name]}%") if params[:meal_name]
     start
   end
 end
