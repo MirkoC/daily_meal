@@ -269,7 +269,7 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H
 curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 93f3999a-6f31-3806-4ee9-11e4ad3c3187" -d '{
   "email": "test@example.example",
   "password": "12345678"
-}' "https://daily-meals.herokuapp.com/users/log_in"
+}' "https://daily-meals.herokuapp.com/users/sign_in"
 ```
 - Search restaurants by city
 ```
