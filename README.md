@@ -158,9 +158,103 @@ or if there is no data with given `:id`:
 }
 ```
 
+##### Meals
+
+Meals are searchable by following params:
+- `meal_name`
+
+`GET /meals?meal_name=beans`
+
+**response**
+
+``` json
+[
+  {
+    "id": 2,
+    "name": "Rosemary in Butter Beans with Parsley",
+    "price": "97.54",
+    "calories": "539.0",
+    "date_next_served": "2017-02-15",
+    "day_served": "Wednesday",
+    "image": "http://lorempixel.com/400/300/food/",
+    "restaurant": {
+      "id": 1,
+      "name": "Schroeder-Sawayn Restaurant",
+      "city": "East Hellenshire",
+      "address": "78729 Damaris Unions",
+      "website": "http://kerlukerippin.net/nigel",
+      "latitude": "37.739919984603816",
+      "longitude": "147.59112846963262",
+      "logo": "https://pigment.github.io/fake-logos/logos/medium/color/11.png"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Chia seeds in Kidney Beans with Celery Seed",
+    "price": "34.58",
+    "calories": "383.0",
+    "date_next_served": "2017-02-12",
+    "day_served": "Sunday",
+    "image": "http://lorempixel.com/400/300/food/",
+    "restaurant": {
+      "id": 1,
+      "name": "Schroeder-Sawayn Restaurant",
+      "city": "East Hellenshire",
+      "address": "78729 Damaris Unions",
+      "website": "http://kerlukerippin.net/nigel",
+      "latitude": "37.739919984603816",
+      "longitude": "147.59112846963262",
+      "logo": "https://pigment.github.io/fake-logos/logos/medium/color/11.png"
+    }
+  },
+  ...
+]
+```
+
+To get single meal use `GET /meals/:id`. For example:
+- `GET /meals/2001`
+ 
+**response**
+
+``` json
+{
+  "id": 2001,
+  "name": "Prunes in Balsamic Vinegar with Mixed Spice",
+  "price": "71.49",
+  "calories": "528.0",
+  "date_next_served": "2017-02-09",
+  "day_served": "Thursday",
+  "image": "http://lorempixel.com/400/300/food/",
+  "restaurant": {
+    "id": 100,
+    "name": "Carroll-Swaniawski Pancakes",
+    "city": "Ljubljana",
+    "address": "47906 Valerie Circle",
+    "website": "http://lind.co/rory",
+    "latitude": "46.0811315185515",
+    "longitude": "14.4434576440182",
+    "logo": "https://pigment.github.io/fake-logos/logos/medium/color/4.png"
+  }
+}
+```
+
+or if there is no data with given `:id`:
+
+```json
+{
+  "errors": {
+    "meal": [
+      "not_found"
+    ]
+  }
+}
+```
+
+**response**
+
 #### Live CURL examples
 
-- Register new user
+- Register a new user
 ```
 curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: f5b2860d-db57-52a9-e809-e7f7b844f13a" -d '{
   "email": "user.new@example.com",
@@ -177,21 +271,35 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H
   "password": "12345678"
 }' "https://daily-meals.herokuapp.com/users/log_in"
 ```
-- Search by city
+- Search restaurants by city
 ```
 curl -X GET -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5leGFtcGxlIiwiZXhwIjoxNDg3NzEwNDAzfQ.U8F8GEd7-DmNfOnuWSJ-CPxmbGFaIX84H74FsDHEBS4" -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: af9d9c41-08b5-c37d-d41e-da1ba39a3128" "https://daily-meals.herokuapp.com/restaurants?city=Ljubljana"
 ```
-- Search by restaurant name
+- Search restaurants by restaurant name
 ```
 curl -X GET -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5leGFtcGxlIiwiZXhwIjoxNDg3NzEwNDAzfQ.U8F8GEd7-DmNfOnuWSJ-CPxmbGFaIX84H74FsDHEBS4" -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 681c0f4b-1932-fa79-9346-7314b9fe227a" "https://daily-meals.herokuapp.com/restaurants?restaurant_name=Lehner%20Restaurant"
 ```
-- Search by latitude and longitude
+- Search restaurants by latitude and longitude
 ```
 curl -X GET -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5leGFtcGxlIiwiZXhwIjoxNDg3NzEwNDAzfQ.U8F8GEd7-DmNfOnuWSJ-CPxmbGFaIX84H74FsDHEBS4" -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 139e4669-d819-8937-1142-4c6c67e0dcf9" "https://daily-meals.herokuapp.com/restaurants?lat=46.1&lng=14.45"
 ```
-- Search by meal name
+- Search restaurants by meal name
 ```
 curl -X GET -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5leGFtcGxlIiwiZXhwIjoxNDg3NzEwNDAzfQ.U8F8GEd7-DmNfOnuWSJ-CPxmbGFaIX84H74FsDHEBS4" -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 3fbbc574-8d38-cdc3-cc69-1a974f8e8a25" "https://daily-meals.herokuapp.com/restaurants?meal_name=Beans"
+```
+
+- Get restaurant by id
+```
+curl -X GET -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5leGFtcGxlIiwiZXhwIjoxNDg3NzEwNDAzfQ.U8F8GEd7-DmNfOnuWSJ-CPxmbGFaIX84H74FsDHEBS4" -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 8df536ae-fef2-fc09-c57c-aba6f3749bfb" "https://daily-meals.herokuapp.com/restaurants/19"
+```
+
+- Search meals by meal name
+```
+curl -X GET -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5leGFtcGxlIiwiZXhwIjoxNDg3NzEwNDAzfQ.U8F8GEd7-DmNfOnuWSJ-CPxmbGFaIX84H74FsDHEBS4" -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: dc973669-9482-0e0d-7cab-9e1deac5ad21" "https://daily-meals.herokuapp.com/meals?meal_name=garlic"
+```
+- Get meal by id
+```
+curl -X GET -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5leGFtcGxlIiwiZXhwIjoxNDg3NzEwNDAzfQ.U8F8GEd7-DmNfOnuWSJ-CPxmbGFaIX84H74FsDHEBS4" -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: a1fa79cf-c3b9-7da8-665d-68d4641ced30" "https://daily-meals.herokuapp.com/meals/1988"
 ```
 
 <hr/>
